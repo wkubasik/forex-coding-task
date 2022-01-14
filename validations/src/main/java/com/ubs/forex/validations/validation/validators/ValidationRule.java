@@ -1,0 +1,10 @@
+package com.ubs.forex.validations.validation.validators;
+
+public enum ValidationRule {
+    STYLE_AMERICAN_OR_EUROPEAN,
+    VALUE_DATE_AGAINST_FORWARD_TYPE,
+    VALUE_DATE_AGAINST_SPOT_TYPE,
+    VALUE_DATE_CANNOT_BE_BEFORE_TRADE_DATE,
+    SUPPORTED_COUNTERPARTIES,
+    LEGAL_ENTITY
+}
