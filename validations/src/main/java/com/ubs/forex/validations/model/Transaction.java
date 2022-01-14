@@ -2,14 +2,14 @@ package com.ubs.forex.validations.model;
 
 import com.ubs.forex.validations.model.enums.TransactionDirection;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Data
-@Builder
+@Getter
+@Setter
 public class Transaction {
 
     @Schema(example = "YODA1", allowableValues = {"YODA1", "YODA2"})

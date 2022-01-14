@@ -23,11 +23,11 @@ public class TransactionController {
 
     private final TransactionValidationService transactionValidationService;
 
+    @PostMapping("validate")
     @Operation(summary = "Validates transactions")
     @ApiResponse(responseCode = "200",
             description = "Validation errors. Transactions are valid if response list is empty.")
-    @Timed(value = "validate_trades", percentiles = {0.95})
-    @PostMapping("validate")
+    @Timed(value = "validate_trades", percentiles = {0.95}, histogram = true)
     public List<ValidationResponse> validateTrades(@RequestBody List<Transaction> transactions) {
         return transactionValidationService.validate(transactions);
     }
