@@ -1,4 +1,4 @@
-package com.ubs.forex.validations.validation.validators;
+package com.ubs.forex.validations.validation.rules;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

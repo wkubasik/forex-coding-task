@@ -1,6 +1,7 @@
-package com.ubs.forex.validations.validation.validators;
+package com.ubs.forex.validations.validation.rules.validators;
 
 import com.ubs.forex.validations.model.Transaction;
+import com.ubs.forex.validations.validation.rules.ValidationResult;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

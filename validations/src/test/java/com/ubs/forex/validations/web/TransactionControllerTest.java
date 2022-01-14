@@ -2,6 +2,7 @@ package com.ubs.forex.validations.web;
 
 import com.ubs.forex.validations.model.Transaction;
 import com.ubs.forex.validations.model.ValidationResponse;
+import com.ubs.forex.validations.utils.WebControllerTest;
 import com.ubs.forex.validations.validation.TransactionValidationService;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -22,14 +23,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.BDDMockito.given;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TransactionControllerTest {
+class TransactionControllerTest extends WebControllerTest {
 
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
+    private static final String TRANSACTIONS_VALIDATE_URL = "/transactions/validate";
 
     @MockBean
     private TransactionValidationService transactionValidationService;
@@ -45,7 +41,7 @@ public class TransactionControllerTest {
         List<Transaction> requestBody = Collections.singletonList(new Transaction());
         given(transactionValidationService.validate(transactionsArgumentCaptor.capture()))
                 .willReturn(validationResponseList);
-        String url = "http://localhost:" + port + "/transactions/validate";
+        String url = getBaseUrl() + TRANSACTIONS_VALIDATE_URL;
 
         // when
         ResponseEntity<ValidationResponse[]> responseEntity = restTemplate.postForEntity(url, requestBody,

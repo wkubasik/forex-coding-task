@@ -1,4 +1,4 @@
-package com.ubs.forex.validations.validation.validators;
+package com.ubs.forex.validations.validation.rules;
 
 public enum ValidationRule {
     STYLE_AMERICAN_OR_EUROPEAN,

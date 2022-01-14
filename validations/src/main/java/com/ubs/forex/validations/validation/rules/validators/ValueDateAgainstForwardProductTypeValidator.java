@@ -1,7 +1,9 @@
-package com.ubs.forex.validations.validation.validators;
+package com.ubs.forex.validations.validation.rules.validators;
 
 import com.ubs.forex.validations.common.DateTimeService;
 import com.ubs.forex.validations.model.Transaction;
+import com.ubs.forex.validations.validation.rules.ValidationResult;
+import com.ubs.forex.validations.validation.rules.ValidationRule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

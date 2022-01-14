@@ -1,7 +1,7 @@
 package com.ubs.forex.validations.validation;
 
-import com.ubs.forex.validations.validation.validators.ValidationRule;
-import com.ubs.forex.validations.validation.validators.Validator;
+import com.ubs.forex.validations.validation.rules.ValidationRule;
+import com.ubs.forex.validations.validation.rules.validators.Validator;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
