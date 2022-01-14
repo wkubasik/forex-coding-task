@@ -2,9 +2,7 @@ package com.ubs.forex.validations.validation;
 
 import com.ubs.forex.validations.model.Transaction;
 import com.ubs.forex.validations.model.ValidationResponse;
-import com.ubs.forex.validations.validation.rules.TransactionRulesFactory;
 import com.ubs.forex.validations.validation.rules.ValidationResult;
-import com.ubs.forex.validations.validation.rules.ValidationRule;
 import com.ubs.forex.validations.validation.rules.validators.CompositeValidator;
 import com.ubs.forex.validations.validation.rules.validators.Validator;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +17,13 @@ import java.util.stream.Collectors;
 public class TransactionValidationService {
 
     private final TransactionValidatorFactory transactionValidatorFactory;
-    private final TransactionRulesFactory transactionRulesFactory;
 
     public List<ValidationResponse> validate(List<Transaction> transactions) {
         List<ValidationResponse> validationResponses = new ArrayList<>();
 
         int index = 0;
         for (Transaction transaction : transactions) {
-            List<ValidationRule> rules = transactionRulesFactory.getValidationRules(transaction.getType());
-            List<Validator> validators = transactionValidatorFactory.getValidators(rules);
+            List<Validator> validators = transactionValidatorFactory.getValidators(transaction.getType());
             List<ValidationResult> validationResults = getValidationResults(transaction, validators);
             validationResponses.addAll(mapResultsToValidationMessage(validationResults, index));
             index++;

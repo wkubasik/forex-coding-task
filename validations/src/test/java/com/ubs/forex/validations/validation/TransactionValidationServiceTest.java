@@ -3,7 +3,6 @@ package com.ubs.forex.validations.validation;
 import com.ubs.forex.validations.model.Transaction;
 import com.ubs.forex.validations.model.ValidationResponse;
 import com.ubs.forex.validations.utils.validators.TestValidator;
-import com.ubs.forex.validations.validation.rules.TransactionRulesFactory;
 import com.ubs.forex.validations.validation.rules.ValidationResult;
 import com.ubs.forex.validations.validation.rules.ValidationRule;
 import org.junit.jupiter.api.Test;
@@ -29,9 +28,6 @@ class TransactionValidationServiceTest {
     @Mock
     private TransactionValidatorFactory transactionValidatorFactory;
 
-    @Mock
-    private TransactionRulesFactory transactionRulesFactory;
-
     @Test
     void shouldValidateTransactionsAgainstTheRules() {
         // given
@@ -41,16 +37,9 @@ class TransactionValidationServiceTest {
                 new ValidationResult(false, "Error message"));
         List<Transaction> transactions = Arrays.asList(getTransaction("FORWARD"), getTransaction("SPOT"));
 
-        List<ValidationRule> validationRules1 = Collections.singletonList(ValidationRule.STYLE_AMERICAN_OR_EUROPEAN);
-        given(transactionRulesFactory.getValidationRules("FORWARD"))
-                .willReturn(validationRules1);
-        List<ValidationRule> validationRules2 = Collections.singletonList(ValidationRule.SUPPORTED_COUNTERPARTIES);
-        given(transactionRulesFactory.getValidationRules("SPOT"))
-                .willReturn(validationRules2);
-
-        given(transactionValidatorFactory.getValidators(validationRules1))
+        given(transactionValidatorFactory.getValidators("FORWARD"))
                 .willReturn(Collections.singletonList(testValidator1));
-        given(transactionValidatorFactory.getValidators(validationRules2))
+        given(transactionValidatorFactory.getValidators("SPOT"))
                 .willReturn(Collections.singletonList(testValidator2));
 
         // when
